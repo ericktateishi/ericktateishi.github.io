@@ -20,7 +20,10 @@ function init() {
 
   var index = 0;
   var interval = setInterval(() => {
-    if (index > messages.length) clearInterval(interval)
+    if (index >= messages.length){
+      clearInterval(interval)
+      return
+    } 
     
     sendText(messages[index])
     index++
