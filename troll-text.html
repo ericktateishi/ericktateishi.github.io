@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Erick Tateishi</title>
+
+		<link rel="stylesheet" href="style/main.css">
+	</head>
+
+	<body>
+		<header class="header">
+			<p>
+				Erick Tateishi | Dev
+			</p>
+		</header>
+		
+		<main class="main">
+      <h1 class="title">Troll text</h1>
+      <textarea id="text"></textarea>
+      <button onclick="getScript()">
+        Copy
+      </button>
+      <textarea id="script" style="display: none;"></textarea>
+      <p id="console"></p>
+		</main>
+
+		<footer class="footer">
+			<p>2019 | Erick Tateishi</p>
+		</footer>
+
+  </body>
+  
+  <script>
+    function getScript() {
+      var client = new XMLHttpRequest();
+      client.open('GET', '/docs/script.txt');
+      client.onreadystatechange = function() {
+        var script = client.responseText
+        var text = document.getElementById("text").value
+        document.getElementById("script").value = script.replace("{{text}}", text)
+
+        var copyText = document.getElementById("script");
+        copyText.style.display = "block"
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        document.getElementById("console").innerHTML = "Copiado"
+      }
+      client.send();
+    }
+  </script>
+</html>

@@ -1,0 +1,31 @@
+function sendText(text) {
+  window.InputEvent = window.Event || window.InputEvent;
+
+  var event = new InputEvent('input', {
+    bubbles: true
+  });
+
+  var textbox = document.querySelectorAll('[contenteditable="true"]')[1];
+
+  textbox.textContent = text;
+  textbox.dispatchEvent(event);
+
+  document.querySelectorAll('[data-icon="send"]')[0].parentElement.click();
+}
+
+function init() {
+  const text = `{{text}}`
+
+  let messages = text.split("\n")
+
+  var index = 0;
+  var interval = setInterval(() => {
+    if (index > 150) clearInterval(interval)
+    
+    sendText(messages[index])
+    index++
+  }, 1000);
+  
+}
+
+init()
