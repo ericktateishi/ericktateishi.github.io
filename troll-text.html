@@ -21,7 +21,7 @@
       <button onclick="getScript()">
         Copy
       </button>
-      <textarea id="script" style="display: none;"></textarea>
+      <textarea id="script" style="opacity: 0;"></textarea>
       <p id="console"></p>
 		</main>
 
@@ -41,7 +41,6 @@
         document.getElementById("script").value = script.replace("{{text}}", text)
 
         var copyText = document.getElementById("script");
-        copyText.style.display = "block"
         /* Select the text field */
         copyText.select();
         copyText.setSelectionRange(0, 99999); /*For mobile devices*/
